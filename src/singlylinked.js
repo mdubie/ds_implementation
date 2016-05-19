@@ -83,19 +83,21 @@ LinkedList.prototype = {
   removeAt: function(index) {
     var pointer = this.head;
 
-    if (index < 0 || index >= this.length) { 
-      return 'Invalid index'
+    if (typeof index === 'number') {
+      if (index < 0 || index >= this.length) { 
+        return;
+      }
+      
+      this.length -= 1;
+      
+      if (index === 0) {
+        this.head = pointer.next;
+      }
+      for (var i = 0; i < index-1; i++) {
+        pointer = pointer.next
+      }
+      pointer.next = pointer.next.next;
     }
-    
-    this.length -= 1;
-    
-    if (index === 0) {
-      this.head = pointer.next;
-    }
-    for (var i = 0; i < index-1; i++) {
-      pointer = pointer.next
-    }
-    pointer.next = pointer.next.next;
   },
 
 
