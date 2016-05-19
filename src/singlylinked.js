@@ -42,19 +42,6 @@ LinkedList.prototype = {
     return pointer.value;
   },
 
-    // Creates a node based on user-input value and inserts at the head of the node
-  insertFirst: function(value) {
-    var pointer = this.head;
-    var curNode = new Node(value);
-    if (!pointer) {
-      this.head = curNode;
-    } else {
-      curNode.next = this.head;
-      this.head = curNode;
-    }
-    this.length += 1
-  },
-
   insertAt: function(index, value) {  //index of 0 === this.head
     var pointer = this.head;
     
