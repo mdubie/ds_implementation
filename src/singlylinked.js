@@ -110,4 +110,4 @@ LinkedList.prototype = {
     return values;
   }
 }
->>>>>>> upstream/master
+
