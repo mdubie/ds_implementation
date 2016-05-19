@@ -1,3 +1,4 @@
+
 function LinkedList() {
   this.length = 0;
   this.head = null;
@@ -75,7 +76,7 @@ LinkedList.prototype = {
         this.length -= 1;
         pointer.next = pointer.next.next;
       }
-        pointer = pointer.next
+        pointer = pointer.next || pointer;
     }
   },
   // Removes node at user-specified index
@@ -109,3 +110,4 @@ LinkedList.prototype = {
     return values;
   }
 }
+
