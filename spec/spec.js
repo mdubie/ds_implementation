@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-=======
 
-// add
-// valueAt
-// insertAt
-// toArray
-// removeAt
-
->>>>>>> refs/remotes/origin/master
 (function() {
   'use strict';
 
