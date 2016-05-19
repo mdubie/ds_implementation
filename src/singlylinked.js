@@ -1,117 +1,124 @@
+function LinkedList() {
+  this.length = 0;
+  this.head = null;
+}
 
- var List = function() {
-   this.length = 0;
-   this.head = null;
- }
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
 
- var Node = function(value) {
-   this.value = value;
-   this.next = null;
- }
+LinkedList.prototype = {
 
- List.prototype.add = function(value) {
-   var curNode = new Node(value);
-   var pointer = this.head;
-   
-   this.length += 1;
-   
-   if (!pointer) {
-     this.head = curNode;
-   } else {
-     while (pointer.next) {
-       pointer = pointer.next;
-     }
-     pointer.next = curNode;
-   }
- }
+  add: function(value) {
+    var curNode = new Node(value);
+    var pointer = this.head;
+    
+    this.length += 1;
+    
+    if (!pointer) {
+      this.head = curNode;
+    } else {
+      while (pointer.next) {
+        pointer = pointer.next;
+      }
+      pointer.next = curNode;
+    }
+  }, 
+    
+    // Retrieves the node value at a given index
+    // Indices are zero-based
 
- List.prototype.valueAt = function(index) {
-   var pointer = this.head;
-   
-   if (index < 0 || index >= this.length) { //edge con
-     return 'Invalid index'
-   }
+  valueAt: function(index) {
+    var pointer = this.head;
+    
+    if (index < 0 || index >= this.length) { //edge con
+      return 'Invalid index'
+    }
 
-   for (var i = 0; i < index; i++) { //edge here
-     pointer = pointer.next;
-   }
-   return pointer.value;
- }
+    for (var i = 0; i < index; i++) { //edge here
+      pointer = pointer.next;
+    }
+    return pointer.value;
+  },
 
- List.prototype.insertAt = function(index, value) {  //index of 0 === this.head
-   var pointer = this.head;
-   
-   if (index < 0 || index >= this.length) { 
-     return 'Invalid index'
-   }
+    // Creates a node based on user-input value and inserts at the head of the node
+  insertFirst: function(value) {
+    var pointer = this.head;
+    var curNode = new Node(value);
+    if (!pointer) {
+      this.head = curNode;
+    } else {
+      curNode.next = this.head;
+      this.head = curNode;
+    }
+    this.length += 1
+  },
 
-   for (var i = 0; i < index-1; i++) { 
-     pointer = pointer.next;
-   }
+  insertAt: function(index, value) {  //index of 0 === this.head
+    var pointer = this.head;
+    
+    if (index < 0 || index >= this.length) { 
+      return 'Invalid index'
+    }
 
-   this.length += 1;
-   var ref = pointer.next;
-   var insertNode = new Node(value);
-   pointer.next = insertNode;
-   pointer.next.next = ref;   //<==removed a line of code here
- }
+    for (var i = 0; i < index-1; i++) { 
+      pointer = pointer.next;
+    }
 
- var listInsertAt1 = new List();
- listInsertAt1.add('pizza');
- listInsertAt1.add('rain');
- listInsertAt1.insertAt(0, 'potatoe')
- console.log('1',listInsertAt1)
- var listInsertAt2 = new List();
- listInsertAt2.add('pizza');
- listInsertAt2.add('rain');
- listInsertAt2.insertAt(2, 'potatoe')
- console.log('2', listInsertAt2)
+    this.length += 1;
+    var ref = pointer.next;
+    var insertNode = new Node(value);
+    pointer.next = insertNode;
+    pointer.next.next = ref;
+  },
 
- List.prototype.toArray = function() {
- 	var result = [];
- 	var pointer = this.head;
- 	while(pointer) {
- 		result.push(pointer.value);
- 		pointer = pointer.next;
- 	}
- 	return result;
- }
+  //Removes first node that matches user-input value
+  remove: function(value) {
+    var pointer = this.head;
 
- // var list = new List();
- // list.add('pizza');
- // list.add('cheese');
- // list.add('veggies');
- // list.add('pasta');
- // console.log(list);
- // console.log(list.toArray())
- 
+    if (pointer.value === value) {
+      this.length -= 1;
+      var tail = pointer.next;
+      this.head = tail;
+    }
+    
+    while (pointer.next) {
+      if (pointer.next.value === value) {
+        this.length -= 1;
+        pointer.next = pointer.next.next;
+      }
+        pointer = pointer.next
+    }
+  },
+  // Removes node at user-specified index
+  removeAt: function(index) {
+    var pointer = this.head;
 
-List.prototype.removeAt = function(index) {
-	this.length -= 1;
-	var pointer = this.head;
-
-	if (index < 0 || index >= this.length) { 
-	  return 'Invalid index'
-	}
-
-	for (var i = 0; i < index-1; i++) { 
-	  pointer = pointer.next;
-	}
-
-	var ref = pointer.next.next;
-	pointer.next = ref;
-};
-
-// var list = new List();
-// list.add('pizza');
-// list.add('cheese');
-// list.add('veggies');
-// list.add('pasta');
-// console.log(list.head);
-// list.removeAt(1)
-// console.log(list.head);
-
+    if (index < 0 || index >= this.length) { 
+      return 'Invalid index'
+    }
+    
+    this.length -= 1;
+    
+    if (index === 0) {
+      this.head = pointer.next;
+    }
+    for (var i = 0; i < index-1; i++) {
+      pointer = pointer.next
+    }
+    pointer.next = pointer.next.next;
+  },
 
 
+  toArray: function() {
+    var pointer = this.head;
+    var values = [];
 
-
+    while (pointer) {
+      values.push(pointer.value);
+      pointer = pointer.next
+    }
+    return values;
+  }
+}

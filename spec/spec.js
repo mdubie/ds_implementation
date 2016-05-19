@@ -10,7 +10,7 @@
   describe('singly linked lists', function() {
     describe('add', function() {
       it('if list is empty, it should add first node', function() {
-        var listAdd1 = new List();
+        var listAdd1 = new LinkedList();
         listAdd1.add('pizza');
 
         var refAdd1 = {length:1, head:{ value:'pizza', next: null } };
@@ -19,7 +19,7 @@
       });
 
       it('if list is not empty, it should add at end of list', function() {
-        var listAdd2 = new List();
+        var listAdd2 = new LinkedList();
         listAdd2.add('pizza');
         listAdd2.add('veggies');
 
@@ -29,7 +29,7 @@
       });
 
       it('it should properly increment length counter', function() {
-        var listAdd3 = new List();
+        var listAdd3 = new LinkedList();
         expect(listAdd3.length).to.equal(0)
 
         listAdd3.add('chocolate');
@@ -39,14 +39,14 @@
 
     describe('valueAt', function() {
       it('if list length is 1, should return first item', function() {
-        var listValueAt1 = new List();
+        var listValueAt1 = new LinkedList();
         listValueAt1.add('pizza');
 
         expect(listValueAt1.valueAt(0)).to.equal('pizza')
       });
 
       it('if list length is greater than 1, should return that item', function() {
-        var listValueAt2 = new List();
+        var listValueAt2 = new LinkedList();
         listValueAt2.add('pizza');
         listValueAt2.add('rain');
         listValueAt2.add('cheese');
@@ -55,7 +55,7 @@
       });
 
       it('if invalid index is given, should let user know there is an error', function() {
-        var listValueAt3 = new List();
+        var listValueAt3 = new LinkedList();
         listValueAt3.add('pizza');
         listValueAt3.add('rain');
         listValueAt3.add('cheese');
@@ -67,7 +67,7 @@
 
     describe('insertAt', function() {
       it('when called at index 0, should insert node at beginning of list', function() {
-        var listInsertAt1 = new List();
+        var listInsertAt1 = new LinkedList();
         listInsertAt1.add('pizza');
         listInsertAt1.add('rain');
         listInsertAt1.insertAt(0, 'potatoe')
@@ -78,7 +78,7 @@
       });
 
       it('when called with a middle index, should insert node into list at given index', function() {
-        var listInsertAt1 = new List();
+        var listInsertAt1 = new LinkedList();
         listInsertAt1.add('pizza');
         listInsertAt1.add('rain');
         listInsertAt1.insertAt(1, 'potatoe')
@@ -89,7 +89,7 @@
       });
 
       it('when called with the last index, should insert node onto the end of the list', function() {
-        var listInsertAt1 = new List();
+        var listInsertAt1 = new LinkedList();
         listInsertAt1.add('pizza');
         listInsertAt1.add('rain');
         listInsertAt1.insertAt(1, 'potatoe')
@@ -100,7 +100,7 @@
       });
 
       it('should increment the length of the list accordingly', function() {
-        var listInsertAt1 = new List();
+        var listInsertAt1 = new LinkedList();
         listInsertAt1.add('pizza');
         listInsertAt1.add('rain');
         listInsertAt1.insertAt(1, 'potatoe')
