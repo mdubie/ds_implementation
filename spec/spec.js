@@ -1,9 +1,3 @@
-// add
-// valueAt
-// insertAt
-// toArray
-// removeAt
-
 (function() {
   'use strict';
 
