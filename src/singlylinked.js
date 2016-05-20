@@ -1,4 +1,3 @@
-
 function LinkedList() {
   this.length = 0;
   this.head = null;
@@ -112,4 +111,3 @@ LinkedList.prototype = {
     return values;
   }
 }
-
